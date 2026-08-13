@@ -8,9 +8,9 @@ import jacuzziFeatureImg from '../assets/image copy copy copy copy copy copy cop
 import grillFeatureImg from '../assets/image copy copy copy copy copy copy copy copy copy copy copy.png';
 import selfiePhotoImg from '../assets/telegram-cloud-photo-size-4-5800785669410983785-x.jpg';
 import passionRoomImg from '../assets/passion-room.png';
-import kitchenDiningImg1 from '../assets/konyha-etkezo-1.png';
-import kitchenDiningImg2 from '../assets/konyha-etkezo-2.png';
-import kitchenDiningImg3 from '../assets/konyha-etkezo-3.png';
+import kitchenDiningImg1 from '../assets/konyha-etkezo-1.webp';
+import kitchenDiningImg2 from '../assets/konyha-etkezo-2.webp';
+import kitchenDiningImg3 from '../assets/konyha-etkezo-3.webp';
 
 const kitchenDiningImages = [kitchenDiningImg1, kitchenDiningImg2, kitchenDiningImg3];
 const kitchenDiningAlts = [
