@@ -4,11 +4,10 @@ import { ChevronDown, Check, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 
-import jacuzziImg from '../assets/jacuzzi.png';
-import selfieImg from '../assets/selfie-corner.png';
+import jacuzziFeatureImg from '../assets/image copy copy copy copy copy copy copy copy copy.png';
+import grillFeatureImg from '../assets/image copy copy copy copy copy copy copy copy copy copy copy.png';
+import selfiePhotoImg from '../assets/telegram-cloud-photo-size-4-5800785669410983785-x.jpg';
 import passionRoomImg from '../assets/passion-room.png';
-import botanicRoomImg from '../assets/botanic-room.png';
-import heroImg from '../assets/hero-bg.png';
 
 interface Block {
   id: string;
@@ -31,7 +30,7 @@ const blocksData: Record<'hu' | 'en', Block[]> = {
         'Kerti LED világítás',
         'Csendes, természetközeli környezet',
       ],
-      image: jacuzziImg,
+      image: jacuzziFeatureImg,
       imageAlt: 'Privát fűtött jacuzzi a House of Moments teraszán',
     },
     {
@@ -44,7 +43,7 @@ const blocksData: Record<'hu' | 'en', Block[]> = {
         'Mikrohullámú sütő',
         'Fondü készlet',
       ],
-      image: heroImg,
+      image: '',
       imageAlt: 'Jól felszerelt konyha és étkező',
     },
     {
@@ -69,7 +68,7 @@ const blocksData: Record<'hu' | 'en', Block[]> = {
         'Kültéri játékok felnőtteknek és gyermekeknek',
         'Saját parkoló',
       ],
-      image: botanicRoomImg,
+      image: grillFeatureImg,
       imageAlt: 'Kert és grill terület',
     },
     {
@@ -82,7 +81,7 @@ const blocksData: Record<'hu' | 'en', Block[]> = {
         'Közös képekhez és emlékekhez ideális helyszín',
         'Hangulatos beltéri környezet',
       ],
-      image: selfieImg,
+      image: selfiePhotoImg,
       imageAlt: 'Hangulatos szelfisarok',
     },
     {
@@ -97,7 +96,7 @@ const blocksData: Record<'hu' | 'en', Block[]> = {
         'Beltéri játékok felnőtteknek és gyermekeknek',
         'Ingyenes Wi-Fi az egész házban',
       ],
-      image: botanicRoomImg,
+      image: '',
       imageAlt: 'Nappali közös tér',
     },
   ],
@@ -112,7 +111,7 @@ const blocksData: Record<'hu' | 'en', Block[]> = {
         'Garden LED lighting',
         'Quiet, nature-close surroundings',
       ],
-      image: jacuzziImg,
+      image: jacuzziFeatureImg,
       imageAlt: 'Private heated jacuzzi on the House of Moments terrace',
     },
     {
@@ -125,7 +124,7 @@ const blocksData: Record<'hu' | 'en', Block[]> = {
         'Microwave oven',
         'Fondue set',
       ],
-      image: heroImg,
+      image: '',
       imageAlt: 'Well-equipped kitchen and dining area',
     },
     {
@@ -150,7 +149,7 @@ const blocksData: Record<'hu' | 'en', Block[]> = {
         'Outdoor games for adults and children',
         'Private parking',
       ],
-      image: botanicRoomImg,
+      image: grillFeatureImg,
       imageAlt: 'Garden and grill area',
     },
     {
@@ -163,7 +162,7 @@ const blocksData: Record<'hu' | 'en', Block[]> = {
         'Ideal for shared photos and memories',
         'Cozy indoor setting',
       ],
-      image: selfieImg,
+      image: selfiePhotoImg,
       imageAlt: 'Atmospheric selfie corner',
     },
     {
@@ -178,7 +177,7 @@ const blocksData: Record<'hu' | 'en', Block[]> = {
         'Indoor games for adults and children',
         'Free Wi-Fi throughout the house',
       ],
-      image: botanicRoomImg,
+      image: '',
       imageAlt: 'Living room shared space',
     },
   ],
@@ -236,16 +235,18 @@ function FeatureBlock({ block, index }: { block: Block; index: number }) {
     >
       <div className={`flex flex-col ${imageLeft ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
         {/* Image */}
-        <div className="lg:w-[45%] flex-shrink-0">
-          <div className="aspect-[4/3] lg:aspect-auto lg:h-full relative overflow-hidden">
-            <img
-              src={block.image}
-              alt={block.imageAlt}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-plum/40 to-transparent" />
+        {block.image && (
+          <div className="lg:w-[45%] flex-shrink-0">
+            <div className="aspect-[4/3] lg:aspect-auto lg:h-full relative overflow-hidden">
+              <img
+                src={block.image}
+                alt={block.imageAlt}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-plum/40 to-transparent" />
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Content */}
         <div className="flex-1 p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
