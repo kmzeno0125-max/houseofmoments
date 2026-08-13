@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { ChevronDown, Check, ArrowRight } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight, Check, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -8,6 +8,16 @@ import jacuzziFeatureImg from '../assets/image copy copy copy copy copy copy cop
 import grillFeatureImg from '../assets/image copy copy copy copy copy copy copy copy copy copy copy.png';
 import selfiePhotoImg from '../assets/telegram-cloud-photo-size-4-5800785669410983785-x.jpg';
 import passionRoomImg from '../assets/passion-room.png';
+import kitchenDiningImg1 from '../assets/konyha-etkezo-1.png';
+import kitchenDiningImg2 from '../assets/konyha-etkezo-2.png';
+import kitchenDiningImg3 from '../assets/konyha-etkezo-3.png';
+
+const kitchenDiningImages = [kitchenDiningImg1, kitchenDiningImg2, kitchenDiningImg3];
+const kitchenDiningAlts = [
+  'Étkező és konyha közös összképe',
+  'Teljes konyha',
+  'Konyhapult és felszereltség',
+];
 
 interface Block {
   id: string;
@@ -16,6 +26,8 @@ interface Block {
   details: string[];
   image: string;
   imageAlt: string;
+  images?: string[];
+  imageAlts?: string[];
 }
 
 const blocksData: Record<'hu' | 'en', Block[]> = {
@@ -45,6 +57,8 @@ const blocksData: Record<'hu' | 'en', Block[]> = {
       ],
       image: '',
       imageAlt: 'Jól felszerelt konyha és étkező',
+      images: kitchenDiningImages,
+      imageAlts: kitchenDiningAlts,
     },
     {
       id: 'szobak',
@@ -126,6 +140,8 @@ const blocksData: Record<'hu' | 'en', Block[]> = {
       ],
       image: '',
       imageAlt: 'Well-equipped kitchen and dining area',
+      images: kitchenDiningImages,
+      imageAlts: kitchenDiningAlts,
     },
     {
       id: 'szobak',
@@ -183,11 +199,54 @@ const blocksData: Record<'hu' | 'en', Block[]> = {
   ],
 };
 
+function KitchenImageSlider({ images, alts }: { images: string[]; alts: string[] }) {
+  const [current, setCurrent] = useState(0);
+
+  const navigate = (direction: 'previous' | 'next') => {
+    setCurrent((previous) =>
+      direction === 'next'
+        ? (previous + 1) % images.length
+        : (previous - 1 + images.length) % images.length,
+    );
+  };
+
+  return (
+    <div className="relative h-full min-h-[260px] sm:min-h-[320px] overflow-hidden">
+      <img
+        src={images[current]}
+        alt={alts[current]}
+        className="w-full h-full object-cover"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-plum/40 to-transparent" />
+      <button
+        type="button"
+        onClick={() => navigate('previous')}
+        aria-label="Previous kitchen image"
+        className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/30 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white/80 hover:bg-black/50 hover:text-white hover:border-white/40 hover:scale-110 transition-all duration-200"
+      >
+        <ChevronLeft size={18} strokeWidth={2} />
+      </button>
+      <button
+        type="button"
+        onClick={() => navigate('next')}
+        aria-label="Next kitchen image"
+        className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/30 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white/80 hover:bg-black/50 hover:text-white hover:border-white/40 hover:scale-110 transition-all duration-200"
+      >
+        <ChevronRight size={18} strokeWidth={2} />
+      </button>
+      <span className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 rounded-full bg-black/35 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
+        {current + 1} / {images.length}
+      </span>
+    </div>
+  );
+}
+
 function FeatureBlock({ block, index }: { block: Block; index: number }) {
   const { lang } = useLanguage();
   const [open, setOpen] = useState(false);
   const imageLeft = index % 2 === 0;
   const isFullWidth = block.id === 'kozos-terek';
+  const isKitchen = block.id === 'konyha-etkezo';
 
   const fullWidthLabel = lang === 'en' ? 'Amenities for the entire house' : 'A ház egészére vonatkozó felszereltség';
   const toggleOpen = lang === 'en' ? 'Close' : 'Bezárás';
@@ -220,6 +279,63 @@ function FeatureBlock({ block, index }: { block: Block; index: number }) {
               </li>
             ))}
           </ul>
+        </div>
+      </motion.article>
+    );
+  }
+
+  if (isKitchen && block.images && block.imageAlts) {
+    return (
+      <motion.article
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        viewport={{ once: true, margin: '-50px' }}
+        className="bg-plum border border-gold/15 rounded-2xl overflow-hidden shadow-lg"
+      >
+        <div className={`flex flex-col ${imageLeft ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
+          <div className="lg:w-[45%] flex-shrink-0">
+            <KitchenImageSlider images={block.images} alts={block.imageAlts} />
+          </div>
+          <div className="flex-1 p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
+            <h3 className="font-display text-2xl sm:text-3xl font-bold text-ink mb-3">
+              {block.title}
+            </h3>
+            <p className="text-ink/70 text-base leading-relaxed mb-6">
+              {block.intro}
+            </p>
+            <button
+              onClick={() => setOpen(!open)}
+              className="inline-flex items-center gap-2 text-gold hover:text-rose transition-colors font-medium text-sm self-start group"
+              aria-expanded={open}
+            >
+              <span>{open ? toggleOpen : toggleClosed}</span>
+              <ChevronDown
+                size={16}
+                className={`transition-transform duration-300 ${open ? 'rotate-180' : ''} group-hover:translate-y-0.5`}
+              />
+            </button>
+            <AnimatePresence initial={false}>
+              {open && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.35, ease: 'easeInOut' }}
+                  className="overflow-hidden"
+                >
+                  <ul className="mt-5 pt-5 border-t border-gold/10 space-y-3">
+                    {block.details.map((item) => (
+                      <li key={item} className="flex items-start gap-3">
+                        <Check size={16} className="text-gold flex-shrink-0 mt-0.5" />
+                        <span className="text-ink/80 text-sm">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </motion.article>
     );
