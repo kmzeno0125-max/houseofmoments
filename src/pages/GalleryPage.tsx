@@ -2,27 +2,34 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import livingImg from '../assets/welcome-about.png';
+import jacuzziImg from '../assets/jacuzzi.png';
+import passionImg from '../assets/passion-room.png';
+import gardenImg from '../assets/files_10287071-2026-05-27T12-55-07-257Z-image.webp';
+import botanicImg from '../assets/botanic-room.png';
+import selfieImg from '../assets/selfie-corner.png';
+import exteriorImg from '../assets/hero-bg.png';
 
 const imagesData = {
   hu: [
-    { src: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Hangulatos nappali meleg fényekkel', span: 'col-span-2 row-span-2' },
-    { src: 'https://images.pexels.com/photos/6585598/pexels-photo-6585598.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Jacuzzi a kertben esti fényben', span: '' },
-    { src: 'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Passion szoba romantikus hangulatfénnyel', span: '' },
-    { src: 'https://images.pexels.com/photos/1643389/pexels-photo-1643389.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Kerti terasz hangulatos kivilágítással', span: 'row-span-2' },
-    { src: 'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Botanic szoba természetes hangulattal', span: '' },
-    { src: 'https://images.pexels.com/photos/1616113/pexels-photo-1616113.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Szelfi sarok virágfallal', span: 'col-span-2' },
-    { src: 'https://images.pexels.com/photos/1579739/pexels-photo-1579739.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Esti kert fényfüzérekkel', span: '' },
-    { src: 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'House of Moments - modern ház külső', span: '' },
+    { src: livingImg, alt: 'Hangulatos nappali meleg fényekkel', span: 'col-span-2 row-span-2' },
+    { src: jacuzziImg, alt: 'Jacuzzi a kertben esti fényben', span: '' },
+    { src: passionImg, alt: 'Passion szoba romantikus hangulatfénnyel', span: '' },
+    { src: gardenImg, alt: 'Kerti terasz hangulatos kivilágítással', span: 'row-span-2' },
+    { src: botanicImg, alt: 'Botanic szoba természetes hangulattal', span: '' },
+    { src: selfieImg, alt: 'Szelfi sarok virágfallal', span: 'col-span-2' },
+    { src: gardenImg, alt: 'Esti kert fényfüzérekkel', span: '' },
+    { src: exteriorImg, alt: 'House of Moments - modern ház külső', span: '' },
   ],
   en: [
-    { src: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Cozy living room with warm lighting', span: 'col-span-2 row-span-2' },
-    { src: 'https://images.pexels.com/photos/6585598/pexels-photo-6585598.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Jacuzzi in the garden in evening light', span: '' },
-    { src: 'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Passion room with romantic mood lighting', span: '' },
-    { src: 'https://images.pexels.com/photos/1643389/pexels-photo-1643389.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Garden terrace with atmospheric lighting', span: 'row-span-2' },
-    { src: 'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Botanic room with natural atmosphere', span: '' },
-    { src: 'https://images.pexels.com/photos/1616113/pexels-photo-1616113.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Selfie corner with flower wall', span: 'col-span-2' },
-    { src: 'https://images.pexels.com/photos/1579739/pexels-photo-1579739.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Evening garden with fairy lights', span: '' },
-    { src: 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'House of Moments - modern house exterior', span: '' },
+    { src: livingImg, alt: 'Cozy living room with warm lighting', span: 'col-span-2 row-span-2' },
+    { src: jacuzziImg, alt: 'Jacuzzi in the garden in evening light', span: '' },
+    { src: passionImg, alt: 'Passion room with romantic mood lighting', span: '' },
+    { src: gardenImg, alt: 'Garden terrace with atmospheric lighting', span: 'row-span-2' },
+    { src: botanicImg, alt: 'Botanic room with natural atmosphere', span: '' },
+    { src: selfieImg, alt: 'Selfie corner with flower wall', span: 'col-span-2' },
+    { src: gardenImg, alt: 'Evening garden with fairy lights', span: '' },
+    { src: exteriorImg, alt: 'House of Moments - modern house exterior', span: '' },
   ],
 };
 
