@@ -5,8 +5,8 @@ import { Check, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import botanicImg from '../assets/botanic-room.png';
 import passionImg from '../assets/files_10287071-2026-06-03T14-59-22-661Z-image.png';
-import passionImg2 from '../assets/files_10287071-2026-06-03T14-59-23-316Z-files_10287071-2026-06-03T14-44-50-212Z-image.png';
-import passionImg3 from '../assets/files_10287071-2026-06-03T14-59-24-642Z-files_10287071-2026-06-03T14-44-53-648Z-image.png';
+import passionImg2 from '../assets/legacy-asset-27.png';
+import passionImg3 from '../assets/legacy-asset-28.png';
 
 const passionImages = [
   { src: passionImg, altHu: 'Passion szoba meleg téglafallal és romantikus hangulatvilágítással', altEn: 'Passion room with warm brick wall and romantic mood lighting' },
